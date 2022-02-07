@@ -1,0 +1,17 @@
+header.project-banner {
+	border-top: 1px solid #123;
+	background: url('../images/banner.jpg') no-repeat 0 0 /100% auto;
+	width: 100%;
+}
+
+.nav-link.active-menu-item {
+	color: var(--warning) !important;
+}
+
+a.nav-link {
+	text-transform: capitalize;
+}
+
+.reqd, .error {
+	font-style: italic;
+}

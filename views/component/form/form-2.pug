@@ -1,0 +1,120 @@
+- const fs = form.errorStatus, ff = form.fields, isfs = form.isSubmitted;
+
+if isfs && !fs
+
+	h3.text-info Hi, #{ff.firstName.value} you have successfully submitted the form!
+
+	h4.text-success.mt-4 Result: 
+
+		div.text-secondary
+
+			div.mt-4
+
+				p Firstname: #{ff.firstName.value}
+
+				p Lastname: #{ff.lastName.value}
+
+				p Email: #{ff.email.value}
+
+				p Gender: #{ff.gender.value}
+
+				p Education: #{ff.education.value}
+
+				p Skills: #{ff.skill.value}
+
+				p About yourself: #{ff.about.value}
+
+
+else
+
+	form#form-1.my-5(method="post" action="/form-2")
+
+			div.form-group.mb-5
+
+				label(for="firstName") First Name: 
+					span.reqd.error.text-danger #{ (fs && ff.firstName.isError) ? ff.firstName.errorMessage : '*' }
+
+				input#firstName.form-control(type="text" name="firstName" value=ff.firstName.value)
+
+			div.form-group.mb-5
+
+				label(for="lastName") Last Name:
+
+				input#lastName.form-control(type="text" name="lastName" value=ff.lastName.value)
+
+			div.form-group.mb-5
+
+				label(for="email") Email:
+					span.reqd.error.text-danger  #{ (fs && ff.email.isError) ? ff.email.errorMessage : '*' }
+
+				input#email.form-control(type="email" name="email" value=ff.email.value)
+
+			div.form-group.mb-5
+
+				label(for="gender") Gender:
+					span.reqd.error.text-danger  #{ (fs && ff.gender.isError) ? ff.gender.errorMessage : '*' }
+
+				div.form-inline.w-25
+				
+					div.form-check.mr-4
+					
+						input#male.form-check-input(type="radio" name="gender" value="Male" checked=(ff.gender.value === 'Male'))
+						label.form-check-label(for="male") Male:
+
+					div.form-check
+						
+						input#female.form-check-input(type="radio" name="gender" value="Female" checked=(ff.gender.value === 'Female'))
+						label.form-check-label(for="female") Female:
+
+			div.form-group.mb-5
+
+				label(for="education") Education:
+					span.reqd.error.text-danger  #{ (fs && ff.education.isError) ? ff.education.errorMessage : '*' }
+
+				div.form-row.w-25
+
+					select#education.form-control(name="education")
+							
+						option(value="0") Select
+						option(value="BBA/MBA" selected=(ff.education.value === 'BBA/MBA')) BBA/MBA
+						option(value="BCA/MCA" selected=(ff.education.value === 'BCA/MCA')) BCA/MCA
+						option(value="BA/MA" selected=(ff.education.value === 'BA/MA')) BA/MA	
+
+			div.form-group.mb-5
+
+				label(for="skill") Skills:
+					span.reqd.error.text-danger  #{ (fs && ff.skill.isError) ? ff.skill.errorMessage : '*' }
+
+				div.form-inline
+				
+					div.form-check.mr-4
+					  	
+						input#wd.form-check-input(type="checkbox" name="skill" value="Web Developer" checked=(ff.skill.value.includes('Web Developer')))
+						label.form-check-label(for="wd") Web Developer
+
+					div.form-check.mr-4
+					  	
+						input#jd.form-check-input(type="checkbox" name="skill" value="Java Developer" checked=(ff.skill.value.includes('Java Developer')))
+						label.form-check-label(for="jd") Java Developer
+
+					div.form-check.mr-4
+					  	
+						input#nd.form-check-input(type="checkbox" name="skill" value="NodeJs Developer" checked=(ff.skill.value.includes('NodeJs Developer')))
+						label.form-check-label(for="nd") NodeJs Developer
+
+					div.form-check
+					  	
+						input#pd.form-check-input(type="checkbox" name="skill" value="Php Developer" checked=(ff.skill.value.includes('Php Developer')))
+						label.form-check-label(for="pd") Php Developer
+
+			div.form-group.mb-5
+
+				label(for="about") About yourself:
+					span.reqd.error.text-danger  #{ (fs && ff.about.isError) ? ff.about.errorMessage : '*'}
+
+				textarea#about.form-control(name="about" value=ff.about.value)
+
+			div.-group.mt-6
+
+				input(type="hidden" name="action" value="form-2")
+				button.btn.btn-primary(type="submit") Submit

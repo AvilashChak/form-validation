@@ -1,0 +1,18 @@
+if formSubmit && !errorMessage
+
+	h3.text-info Hello, #{formData ? formData.yourName : ''}!
+	p You have successfully submitted the form!
+
+else	
+
+	form#form-1.my-5(method="post" action="/form-1")
+
+		div.form-group
+
+			label(for="yourName") Name: 
+				span.reqd.error.text-danger #{errorMessage ? errorMessage : '*'}
+
+			input#yourName.form-control(type="text" name="yourName")
+
+		input(type="hidden" name="action" value="form-1")
+		button.btn.btn-primary(type="submit") Submit
